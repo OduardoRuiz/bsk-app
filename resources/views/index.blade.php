@@ -30,6 +30,17 @@
 
 <body class="">
     <section>
+        @foreach ($scheduleData as $schedule)
+        <div class="d-flex mt-3 border border-warning justify-content-center m-5" style="width: 100% height: 10rem">
+            <span class="card-title h6 mt-4" style="">{{ $schedule->local }} </span> 
+            <p class="card-title h6 mt-4" style="">{{ $schedule->city }} </p>
+            <span class="card-title h6 mt-4" style="">{{ $schedule->concert_date }} </span>
+            <a class="btn btn-sm btn-primary m-3" href="{{ $schedule->linkTickets }}">Ingressos Aqui </a>
+        </div>
+        </div>
+    @endforeach
+    </section>
+    <section>
         <div class="m-5">
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1ixRGSR7pOSWqLTtbjL62p?utm_source=generator&theme=0" width="100%" height="450"
              frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -39,7 +50,7 @@
     <section class="container text-center">
         <h3>Lista de Itens</h3>
         <div class="row mt-3 m-5">
-            @foreach ($stores as $store)
+            @foreach ($storeData as $store)
             <div class="col-11 col-md-6 col-lg-4 d-flex mt-3 justify-content-center">
                 <a class="text-decoration-none justify-content-center" href="{{ $store->link }}" target="_blank">
                     <div class="card border-0 store-item text-center" style="width: 14rem;">

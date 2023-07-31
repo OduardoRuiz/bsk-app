@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/', [StoreController::class, 'index'])->name('stores');
+//Route::get('/', [StoreController::class, 'index'])->name('stores');
 
 Route::get('/store/create', [StoreController::class, 'create'])->name('store.create');
 
@@ -27,3 +28,19 @@ Route::get('/store/edit/{store}', [StoreController::class, 'edit'])->name('store
 Route::patch('/store/update/{store}', [StoreController::class, 'update'])->name('store.update');
 
 Route::delete('/store/{id}', [StoreController::class, 'destroy'])->name('store.destroy');
+
+
+//Agenda de shows
+//Route::get('/', [ScheduleController::class, 'index'])->name('schedules');
+Route::get('/', function () {
+    $storeController = new StoreController();
+    $storeData = $storeController->index()->getData()['stores'];
+
+    $scheduleController = new ScheduleController();
+    $scheduleData = $scheduleController->index()->getData()['schedules'];
+
+    // Combine os dados em uma única array
+    $combinedData = compact('storeData', 'scheduleData');
+
+    return view('index', $combinedData);
+})->name('index');
