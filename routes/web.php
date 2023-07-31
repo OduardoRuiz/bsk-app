@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/', [StoreController::class, 'index'])->name('stores');
+
+Route::get('/store/create', [StoreController::class, 'create'])->name('store.create');
+
+Route::get('/store/edit/{store}', [StoreController::class, 'edit'])->name('store.edit');
+
+Route::patch('/store/update/{store}', [StoreController::class, 'update'])->name('store.update');
+
+Route::delete('/store/{id}', [StoreController::class, 'destroy'])->name('store.destroy');

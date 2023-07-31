@@ -1,0 +1,1 @@
+<h1>Create store</h1>
