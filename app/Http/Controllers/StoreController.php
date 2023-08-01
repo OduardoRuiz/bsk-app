@@ -15,12 +15,17 @@ class StoreController extends Controller
         return view('index')->with('stores',Store::all());
     }
 
+    public function storeIndex()
+    {
+        return view('admin.store.index')->with('stores',Store::all());
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('admin.store.create');
     }
 
     /**
@@ -28,7 +33,13 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Store::create([
+            'name' => $request->name,
+            'thumbnail' => $request->thumbnail,
+            'link' => $request->link,
+        ]);
+        return redirect(route('stores.index'));
     }
 
     /**

@@ -19,9 +19,11 @@ Route::get('/', function () {
     return view('index');
 });
 
-//Route::get('/', [StoreController::class, 'index'])->name('stores');
+Route::get('/admin/store/index', [StoreController::class, 'storeIndex'])->name('stores.index');
 
-Route::get('/store/create', [StoreController::class, 'create'])->name('store.create');
+Route::get('admin/store/create', [StoreController::class, 'create'])->name('store.create');
+
+Route::post('admin/store/store', [StoreController::class, 'store'])->name('create.store');
 
 Route::get('/store/edit/{store}', [StoreController::class, 'edit'])->name('store.edit');
 
